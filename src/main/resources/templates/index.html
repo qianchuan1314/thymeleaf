@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>this is thymeleaf inex html</title>
+</head>
+<body>
+<h3 >this is .............thymeleaf</h3>
+<p th:text="${message}"></p>
+<span th:text="${user.id}"></span>
+<span th:text="${user.name}"></span>
+<span th:text="${user.age}"></span>
+<br>
+<img th:src="${src.src1}" >
+<img th:src="${src.src2}" >
+<table>
+
+    <th>
+    <td>编号</td>
+    <td>学号</td>
+    <td>姓名</td>
+    <td>年龄</td>
+    </th>
+    <tr th:each="user,iterStart:${users}">
+        <td th:text="${iterStart.index+1}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+    </tr>
+</table>
+[[${users}]]
+<br>
+<span th:text="'欢迎'+${message}"></span>
+<span th:text="|你好${message}|"></span>
+<h2 th:if="${message=='hello-ripe-thymeleaf'}">ripe 的天下</h2>
+<h2 th:unless="${message=='hello-ripe-thymeleaf'}">ripe的地方</h2>
+<!--引入代码片段-->
+<div th:insert="~{foot :: my  }"></div>
+=====================
+<div th:replace="~{foot :: my}"></div>
+===============================
+<div th:include="~{foot::my}"></div>
+
+<h3 th:if="${#strings.isEmpty(str)}">str不存在</h3>
+<span th:text="${#strings.substring(str,3,6)}"></span>
+<span th:text="${#strings.abbreviate(str,6)}"></span>
+</body>
+</html>
